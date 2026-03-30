@@ -1,0 +1,107 @@
+package pokemon;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class pokemon {
+	
+	 public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
+
+	        List<String> elementos = new ArrayList<>();
+
+	        System.out.println("sistema NeXT-GEnEvoluX - prof. Carvalho");
+	        System.out.println("elementos: te, el, vo, fa, ps, gr, ag, fo, dr");
+	        System.out.println("colocar no minimo 2 e no maximo 9 elementos");
+
+	        while (true) {
+	            if (elementos.size() == 9) {
+	                System.out.println("\nCHEGA! no máximo >> 9 <<");
+	                break;
+	            }
+
+	            System.out.print("\ndigite o elemento " + (elementos.size() + 1) + " (ou 'chega' para finalizar): ");
+	            String codigo = scanner.nextLine().trim();
+
+	            if (codigo.equals("chega")) {
+	                if (elementos.size() < 2) {
+	                    System.out.println("precisa de pelo menos 2 elementos, agora tem: " + elementos.size() + ".");
+	                } else {
+	                    break;
+	                }
+	            } else if (
+	                codigo.equals("te") || codigo.equals("el") || codigo.equals("vo") ||
+	                codigo.equals("fa") || codigo.equals("ps") || codigo.equals("gr") ||
+	                codigo.equals("ag") || codigo.equals("fo") || codigo.equals("dr")
+	            ) {
+	                elementos.add(codigo);
+	                System.out.println("certo, próximo elemento...");
+	            } else {
+	                System.out.println("elemento digitado errado, confira novamente pf");
+	            }
+	        }
+
+
+	        System.out.println(">> evouções compativeis por elemento inserido <<");
+
+
+	        for (int i = 0; i < elementos.size(); i++) {
+	            String elemento = elementos.get(i);
+
+	            System.out.println("elemento: " + nomeElemento(elemento));
+	            System.out.println("  pode ir para: " + evolucoes(elemento));
+	            System.out.println();
+	        }
+
+	        scanner.close();
+	    }
+
+	    public static String nomeElemento(String codigo) {
+	        if (codigo.equals("te")) {
+	            return "terra";
+	        } else if (codigo.equals("el")) {
+	            return "eletrico";
+	        } else if (codigo.equals("vo")) {
+	            return "voador";
+	        } else if (codigo.equals("fa")) {
+	            return "fantasma";
+	        } else if (codigo.equals("ps")) {
+	            return "psico";
+	        } else if (codigo.equals("gr")) {
+	            return "grama";
+	        } else if (codigo.equals("ag")) {
+	            return "agua";
+	        } else if (codigo.equals("fo")) {
+	            return "fogo";
+	        } else if (codigo.equals("dr")) {
+	            return "dragao";
+	        }
+
+	        return "";
+	    }
+
+	    public static String evolucoes(String codigo) {
+	        if (codigo.equals("vo")) {
+	            return "dragao";
+	        } else if (codigo.equals("fo")) {
+	            return "dragao, voador";
+	        } else if (codigo.equals("ag")) {
+	            return "terra, voador, fantasma, psico, grama, fogo, dragao";
+	        } else if (codigo.equals("el")) {
+	            return "terra, voador, fantasma, psico, grama, fogo, dragao";
+	        } else if (codigo.equals("fa")) {
+	            return "terra, eletrico, voador, grama, agua, fogo, dragao";
+	        } else if (codigo.equals("te")) {
+	            return "eletrico, voador, fantasma, psico, grama, agua, fogo, dragao";
+	        } else if (codigo.equals("ps")) {
+	            return "terra, eletrico, voador, fantasma, grama, agua, fogo, dragao";
+	        } else if (codigo.equals("gr")) {
+	            return "terra, eletrico, voador, fantasma, psico, agua, fogo, dragao";
+	        } else if (codigo.equals("dr")) {
+	            return "terra, eletrico, voador, fantasma, psico, grama, agua, fogo";
+	        }
+
+	        return "";
+	    }
+
+}
